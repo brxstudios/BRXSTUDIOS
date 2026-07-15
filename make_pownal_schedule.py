@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Generate the Pownal Security Schedule as a print-ready xlsx (landscape letter, 1 page)."""
+"""Generate the Pownal Security Schedule as a print-ready xlsx (portrait letter, 1 page).
+
+Layout: title bar, then each day stacked top-to-bottom (Aug 11 -> 17), each with
+Shift | Volunteer 1 | Volunteer 2 columns and blank fill-in cells.
+"""
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.page import PageMargins
 
 YELLOW = PatternFill("solid", fgColor="F6C445")
@@ -28,98 +31,79 @@ wb = Workbook()
 ws = wb.active
 ws.title = "Security Schedule"
 
-# Block column layout: 3 blocks of (shift, vol1, vol2), separated by spacer columns.
-# Blocks start at columns A(1), E(5), I(9); spacers at D(4), H(8).
-BLOCK_COLS = [1, 5, 9]
-for start in BLOCK_COLS:
-    ws.column_dimensions[get_column_letter(start)].width = 18      # shift
-    ws.column_dimensions[get_column_letter(start + 1)].width = 13  # volunteer 1
-    ws.column_dimensions[get_column_letter(start + 2)].width = 13  # volunteer 2
-for spacer in (4, 8):
-    ws.column_dimensions[get_column_letter(spacer)].width = 1.5
+ws.column_dimensions["A"].width = 40  # shift
+ws.column_dimensions["B"].width = 37  # volunteer 1
+ws.column_dimensions["C"].width = 37  # volunteer 2
 
-# Title
-ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=11)
+# Title bar
+ws.merge_cells("A1:C1")
 t = ws.cell(row=1, column=1, value="POWNAL SECURITY SCHEDULE")
 t.font = Font(bold=True, size=20)
 t.alignment = Alignment(horizontal="center", vertical="center")
-for c in range(1, 12):
+for c in range(1, 4):
     ws.cell(row=1, column=c).fill = YELLOW
     ws.cell(row=1, column=c).border = BORDER
-ws.row_dimensions[1].height = 40
-ws.row_dimensions[2].height = 6
+ws.row_dimensions[1].height = 34
+ws.row_dimensions[2].height = 5
 
-def draw_day(row, col, title, shifts):
-    """Draw one day block starting at (row, col). Returns rows used."""
-    # Date header across the 3 block columns
-    ws.merge_cells(start_row=row, start_column=col, end_row=row, end_column=col + 2)
-    h = ws.cell(row=row, column=col, value=title)
+# Column labels (once, under the title)
+for col, (label, fill, color) in enumerate([
+    ("Shift", GREEN_HDR, "000000"),
+    ("Volunteer 1", BLUE_HDR, "FFFFFF"),
+    ("Volunteer 2", BLUE_HDR, "FFFFFF"),
+], start=1):
+    cell = ws.cell(row=3, column=col, value=label)
+    cell.font = Font(bold=True, size=11, color=color)
+    cell.fill = fill
+    cell.border = BORDER
+    cell.alignment = Alignment(horizontal="center" if col > 1 else "left", vertical="center")
+ws.row_dimensions[3].height = 18
+
+# Days stacked top to bottom
+row = 4
+for title, shifts in DAYS:
+    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=3)
+    h = ws.cell(row=row, column=1, value=title)
     h.font = Font(bold=True, size=12)
     h.alignment = Alignment(horizontal="left", vertical="center")
-    for c in range(col, col + 3):
+    for c in range(1, 4):
         ws.cell(row=row, column=c).fill = GREEN_HDR
         ws.cell(row=row, column=c).border = BORDER
-    ws.row_dimensions[row].height = 22
+    ws.row_dimensions[row].height = 20
+    row += 1
 
-    # Column labels
-    lr = row + 1
-    for offset, (label, fill, color) in enumerate([
-        ("Shift", GREEN_HDR, "000000"),
-        ("Volunteer 1", BLUE_HDR, "FFFFFF"),
-        ("Volunteer 2", BLUE_HDR, "FFFFFF"),
-    ]):
-        cell = ws.cell(row=lr, column=col + offset, value=label)
-        cell.font = Font(bold=True, size=10, color=color)
-        cell.fill = fill
-        cell.border = BORDER
-        cell.alignment = Alignment(horizontal="center" if offset else "left", vertical="center")
-    ws.row_dimensions[lr].height = 18
-
-    # Shift rows with two blank fill-in cells each
-    for i, shift in enumerate(shifts):
-        r = lr + 1 + i
-        s = ws.cell(row=r, column=col, value=shift)
-        s.font = Font(bold=True, size=9.5)
+    for shift in shifts:
+        s = ws.cell(row=row, column=1, value=shift)
+        s.font = Font(bold=True, size=10)
         s.fill = GREEN
         s.border = BORDER
         s.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
-        for offset in (1, 2):
-            v = ws.cell(row=r, column=col + offset)
+        for col in (2, 3):
+            v = ws.cell(row=row, column=col)
             v.fill = BLUE
             v.border = BORDER
-        ws.row_dimensions[r].height = 42
-    return 2 + len(shifts)
-
-# Lay out days in a 3 x 3 grid (bands of 3 days)
-row = 3
-for band_start in range(0, len(DAYS), 3):
-    band = DAYS[band_start:band_start + 3]
-    used = 0
-    for i, (title, shifts) in enumerate(band):
-        used = max(used, draw_day(row, BLOCK_COLS[i], title, shifts))
-    row += used
-    ws.row_dimensions[row].height = 10  # spacer between bands
-    row += 1
+        ws.row_dimensions[row].height = 36
+        row += 1
 
 # Footnote (from the original sheet)
 NOTE = ("Please note that shifts are organized by calendar day. Even if a shift extends "
         "into the early morning hours, it is recorded under the day it begins to maintain "
         "scheduling consistency.")
-ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=11)
+ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=3)
 n = ws.cell(row=row, column=1, value=NOTE)
 n.font = Font(italic=True, size=9)
 n.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
-ws.row_dimensions[row].height = 24
+ws.row_dimensions[row].height = 30
 row += 1
 
-# Print setup: one landscape letter page
-ws.page_setup.orientation = "landscape"
+# Print setup: one portrait letter page
+ws.page_setup.orientation = "portrait"
 ws.page_setup.paperSize = ws.PAPERSIZE_LETTER
 ws.page_setup.fitToPage = True
 ws.page_setup.fitToWidth = 1
 ws.page_setup.fitToHeight = 1
 ws.page_margins = PageMargins(left=0.4, right=0.4, top=0.4, bottom=0.4)
-ws.print_area = f"A1:K{row - 1}"
+ws.print_area = f"A1:C{row - 1}"
 ws.sheet_view.showGridLines = False
 
 wb.save("/home/user/BRXSTUDIOS/Pownal Security Schedule.xlsx")
