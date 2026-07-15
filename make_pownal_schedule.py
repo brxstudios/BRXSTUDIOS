@@ -101,6 +101,17 @@ for band_start in range(0, len(DAYS), 3):
     ws.row_dimensions[row].height = 10  # spacer between bands
     row += 1
 
+# Footnote (from the original sheet)
+NOTE = ("Please note that shifts are organized by calendar day. Even if a shift extends "
+        "into the early morning hours, it is recorded under the day it begins to maintain "
+        "scheduling consistency.")
+ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=11)
+n = ws.cell(row=row, column=1, value=NOTE)
+n.font = Font(italic=True, size=9)
+n.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
+ws.row_dimensions[row].height = 24
+row += 1
+
 # Print setup: one landscape letter page
 ws.page_setup.orientation = "landscape"
 ws.page_setup.paperSize = ws.PAPERSIZE_LETTER
