@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stillharvest"
+version = "0.1.0"
+description = "Review every frame of footage on a drive and pull out the frames worth keeping as photographs."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["numpy>=1.23"]
+
+[project.optional-dependencies]
+faces = ["opencv-python-headless>=4.8"]
+ai = ["anthropic>=0.40"]
+all = ["opencv-python-headless>=4.8", "anthropic>=0.40"]
+
+[project.scripts]
+stillharvest = "stillharvest.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["stillharvest*"]
