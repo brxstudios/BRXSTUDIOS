@@ -1,0 +1,63 @@
+[
+  {
+    "id": "victorian-streetwalk-2026",
+    "title": "Victorian Streetwalk",
+    "start": "2026-12-03",
+    "dateConfirmed": false,
+    "time": "6–9pm",
+    "venue": "Downtown Broadway",
+    "category": "Holiday",
+    "price": "Free",
+    "summary": "Saratoga’s holiday kickoff: a tree lighting, carolers and costumed performers along Broadway, with shops open late. Held the first Thursday of December in recent years.",
+    "featured": true
+  },
+  {
+    "id": "new-years-fest-2026",
+    "title": "Saratoga New Year’s Fest",
+    "start": "2026-12-31",
+    "end": "2027-01-01",
+    "dateConfirmed": false,
+    "venue": "City Center & downtown venues",
+    "category": "Holiday",
+    "price": "Ticketed shows + free events",
+    "summary": "The city’s New Year’s celebration (formerly First Night) with indoor concerts, family events and fireworks. Indoor show tickets typically go on sale in late November.",
+    "url": "https://www.discoversaratoga.org/events/saratoga-new-years-eve/",
+    "featured": true
+  },
+  {
+    "id": "chowderfest-2027",
+    "title": "Saratoga Chowderfest",
+    "start": "2027-02-06",
+    "dateConfirmed": false,
+    "time": "11am–4pm",
+    "venue": "Downtown Saratoga Springs",
+    "category": "Food & Drink",
+    "price": "Pay per cup",
+    "summary": "Dozens of restaurants serve chowder by the cup and you vote for the best. The biggest winter day of the year downtown — go early.",
+    "url": "https://www.discoversaratoga.org/chowderfest",
+    "featured": true
+  },
+  {
+    "id": "saratoga-meet-2027",
+    "title": "Saratoga Race Course: 2027 Summer Meet",
+    "start": "2027-07-15",
+    "end": "2027-09-06",
+    "dateConfirmed": false,
+    "venue": "Saratoga Race Course",
+    "category": "Track",
+    "price": "From general admission",
+    "summary": "NYRA plans a return to the traditional 40-day meet in 2027, running through Labor Day. Official dates are usually announced early in the year.",
+    "url": "https://www.nyra.com/saratoga/"
+  },
+  {
+    "id": "travers-2027",
+    "title": "The Travers Stakes",
+    "start": "2027-08-28",
+    "dateConfirmed": false,
+    "venue": "Saratoga Race Course",
+    "category": "Track",
+    "price": "Ticketed",
+    "summary": "The “Midsummer Derby,” first run in 1864 and the biggest day of the Saratoga season. Traditionally a late-August Saturday.",
+    "url": "https://www.nyra.com/saratoga/"
+  }
+]

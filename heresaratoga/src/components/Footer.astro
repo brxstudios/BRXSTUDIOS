@@ -1,0 +1,47 @@
+---
+import { SITE } from '../data/site';
+import Newsletter from './Newsletter.astro';
+const year = new Date().getFullYear();
+---
+<Newsletter />
+<footer>
+  <div class="wrap cols">
+    <div>
+      <p class="brand">Here<b>Saratoga</b></p>
+      <p>{SITE.tagline}. Health, history, horses — and everything happening in between.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="/events/">Events calendar</a>
+      <a href="/guides/">Guides</a>
+      <a href="/explore/things-to-do/">Things to do</a>
+      <a href="/explore/eat-drink/">Eat &amp; drink</a>
+      <a href="/explore/stay/">Stay</a>
+      <a href="/explore/shop/">Shop</a>
+    </div>
+    <div>
+      <h4>HereSaratoga</h4>
+      <a href="/about/">About</a>
+      <a href="/submit-event/">Submit an event</a>
+      <a href="/about/#advertise">Advertise</a>
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </div>
+  </div>
+  <div class="wrap fine">
+    <span>© {year} HereSaratoga. Event details change — always confirm with the organizer before you go.</span>
+    <a href="/about/#photo-credits">Photo credits</a>
+  </div>
+</footer>
+
+<style>
+  footer { background: var(--cobalt-ink); color: #c9d4ea; padding: 56px 0 28px; }
+  .cols { display: grid; gap: 32px; grid-template-columns: 2fr 1fr 1fr; }
+  @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+  .brand { font: 500 1.6rem/1 var(--serif); color: #fff; margin: 0 0 12px; }
+  .brand b { font-weight: 700; }
+  h4 { color: #fff; margin: 0 0 12px; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .cols a { display: block; color: #c9d4ea; text-decoration: none; padding: 4px 0; overflow-wrap: anywhere; }
+  .cols a:hover { color: #fff; }
+  .fine { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 0.85rem; }
+  .fine a { color: #c9d4ea; }
+</style>

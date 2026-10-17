@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Photo from './Photo.astro';
+interface Props { guide: CollectionEntry<'guides'>; }
+const { guide } = Astro.props;
+const { title, dek, category, image } = guide.data;
+---
+<a class="card" href={`/guides/${guide.id}/`}>
+  <Photo image={image} label={category} />
+  <div class="body">
+    <span class="chip">{category}</span>
+    <h3>{title}</h3>
+    <p class="muted">{dek}</p>
+  </div>
+</a>
+
+<style>
+  .card { display: block; text-decoration: none; color: inherit; }
+  .card:hover h3 { color: var(--cobalt); }
+  .body { padding: 14px 2px 0; }
+  .body h3 { margin-top: 10px; transition: color 0.15s; }
+  .body p { margin: 0; font-size: 0.97rem; }
+</style>

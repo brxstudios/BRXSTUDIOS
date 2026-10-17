@@ -1,0 +1,34 @@
+---
+// Renders a credited photo, or a cobalt placeholder when no licensed photo is set yet.
+interface Props {
+  image?: { src: string; alt: string; credit: string; license: string; sourceUrl: string };
+  label?: string;
+  ratio?: string;
+  showCredit?: boolean;
+  eager?: boolean;
+}
+const { image, label = '', ratio = '3 / 2', showCredit = false, eager = false } = Astro.props;
+---
+<figure class="photo" style={`aspect-ratio:${ratio}`}>
+  {image ? (
+    <img src={image.src} alt={image.alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  ) : (
+    <div class="ph" aria-hidden="true"><span>{label}</span></div>
+  )}
+  {image && showCredit && (
+    <figcaption>Photo: <a href={image.sourceUrl} rel="noopener" target="_blank">{image.credit}</a> · {image.license}</figcaption>
+  )}
+</figure>
+
+<style>
+  .photo { position: relative; margin: 0; overflow: hidden; border-radius: var(--radius); background: var(--cobalt-tint); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .ph { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 16px;
+    background:
+      radial-gradient(circle at 80% 15%, rgba(255,255,255,0.18) 0 18%, transparent 19%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 12px, transparent 12px 24px),
+      linear-gradient(160deg, #1d63c9, var(--cobalt) 45%, var(--cobalt-deep)); }
+  .ph span { font: 600 1.05rem/1.2 var(--serif); color: rgba(255,255,255,0.9); }
+  figcaption { position: absolute; right: 8px; bottom: 8px; max-width: calc(100% - 16px); padding: 3px 8px; border-radius: 6px; background: rgba(0,0,0,0.55); color: #fff; font-size: 0.7rem; }
+  figcaption a { color: #fff; }
+</style>

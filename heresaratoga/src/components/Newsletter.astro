@@ -1,0 +1,33 @@
+---
+import { SITE } from '../data/site';
+const action = SITE.newsletterEndpoint;
+---
+<section class="news">
+  <div class="wrap inner">
+    <div>
+      <p class="eyebrow">Every Thursday</p>
+      <h2>This Weekend in Saratoga</h2>
+      <p>The best things to do, new openings and what’s worth the drive — one email, before the weekend.</p>
+    </div>
+    {action ? (
+      <form action={action} method="post" class="form">
+        <label for="nl-email" class="sr">Email</label>
+        <input id="nl-email" type="email" name="email" placeholder="you@email.com" required />
+        <button class="btn light" type="submit">Subscribe</button>
+      </form>
+    ) : (
+      <a class="btn light" href={`mailto:${SITE.email}?subject=Subscribe%20me`}>Get the newsletter</a>
+    )}
+  </div>
+</section>
+
+<style>
+  .news { background: var(--cobalt); color: #e6eefc; padding: 48px 0; }
+  .news h2 { color: #fff; margin-bottom: 8px; }
+  .news .eyebrow { color: #a9c4f5; }
+  .inner { display: grid; gap: 24px; grid-template-columns: 1.3fr 1fr; align-items: center; }
+  @media (max-width: 760px) { .inner { grid-template-columns: 1fr; } }
+  .form { display: flex; gap: 10px; flex-wrap: wrap; }
+  .form input { flex: 1 1 220px; border: 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); margin: 0; }
+</style>

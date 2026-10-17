@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import GuideCard from '../../components/GuideCard.astro';
+
+const guides = (await getCollection('guides')).sort((a, b) => +b.data.updated - +a.data.updated);
+---
+<Base title="Saratoga Springs Guides" description="Insider guides to Saratoga Springs: track season, SPAC, the springs, where to eat and how to spend a weekend.">
+  <section class="section wrap">
+    <p class="eyebrow">Guides</p>
+    <h1>The Saratoga guides</h1>
+    <p class="muted" style="max-width:60ch">Everything we’d tell a friend visiting for the first time — and a few things locals forget.</p>
+    <div class="grid" style="margin-top:32px">{guides.map((g) => <GuideCard guide={g} />)}</div>
+  </section>
+</Base>

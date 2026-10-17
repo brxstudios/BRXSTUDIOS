@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import EventCard from '../components/EventCard.astro';
+import { fmt, todayInSaratoga } from '../lib/dates';
+
+const today = todayInSaratoga();
+const events = (await getCollection('events'))
+  .filter((e) => (e.data.end ?? e.data.start) >= today)
+  .sort((a, b) => +a.data.start - +b.data.start);
+
+const months = new Map<string, typeof events>();
+for (const e of events) {
+  const key = fmt(e.data.start, { month: 'long', year: 'numeric' });
+  months.set(key, [...(months.get(key) ?? []), e]);
+}
+const categories = [...new Set(events.map((e) => e.data.category))].sort();
+---
+<Base title="Saratoga Events Calendar" description="Concerts, festivals, track days and things to do in Saratoga Springs, updated weekly.">
+  <section class="section wrap">
+    <p class="eyebrow">Events</p>
+    <h1>What’s happening in Saratoga</h1>
+    <p class="muted intro">Festivals, track days, shows and seasonal traditions. <span class="chip warn">Date TBC</span> means we expect the date based on past years but the organizer hasn’t announced it yet.</p>
+    <div class="filters" role="group" aria-label="Filter by category">
+      <button class="on" data-filter="all">All</button>
+      {categories.map((c) => <button data-filter={c}>{c}</button>)}
+    </div>
+    {[...months].map(([month, list]) => (
+      <div class="month">
+        <h2>{month}</h2>
+        <div class="list">{list.map((e) => <EventCard event={e} />)}</div>
+      </div>
+    ))}
+    <p class="empty muted" hidden>No events in this category yet.</p>
+    <div class="submit">
+      <h3>Hosting something in Saratoga?</h3>
+      <p class="muted">Send it to us and we’ll add it to the calendar for free.</p>
+      <a class="btn" href="/submit-event/">Submit an event</a>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filters button');
+  buttons.forEach((b) =>
+    b.addEventListener('click', () => {
+      const f = b.dataset.filter!;
+      buttons.forEach((x) => x.classList.toggle('on', x === b));
+      let shown = 0;
+      document.querySelectorAll<HTMLElement>('.month').forEach((m) => {
+        let inMonth = 0;
+        m.querySelectorAll<HTMLElement>('[data-category]').forEach((ev) => {
+          const show = f === 'all' || ev.dataset.category === f;
+          ev.hidden = !show;
+          if (show) inMonth++;
+        });
+        m.hidden = inMonth === 0;
+        shown += inMonth;
+      });
+      document.querySelector<HTMLElement>('.empty')!.hidden = shown > 0;
+    }),
+  );
+</script>
+
+<style>
+  .intro { max-width: 60ch; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 8px; }
+  .filters button { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--cobalt-ink); font: 500 0.9rem/1 var(--sans); cursor: pointer; }
+  .filters button.on { background: var(--cobalt); border-color: var(--cobalt); color: #fff; }
+  .month { margin-top: 36px; }
+  .month h2 { font-size: 1.5rem; padding-bottom: 8px; border-bottom: 2px solid var(--cobalt); }
+  .list { display: grid; gap: 14px; }
+  .submit { margin-top: 56px; padding: 28px; border-radius: var(--radius); background: var(--cobalt-tint); }
+</style>

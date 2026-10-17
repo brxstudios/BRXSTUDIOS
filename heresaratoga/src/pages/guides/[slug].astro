@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Photo from '../../components/Photo.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import { fmt } from '../../lib/dates';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((guide) => ({ params: { slug: guide.id }, props: { guide, guides } }));
+}
+
+const { guide, guides } = Astro.props;
+const { Content } = await render(guide);
+const g = guide.data;
+const related = guides.filter((x) => x.id !== guide.id).sort((a, b) => Number(b.data.category === g.category) - Number(a.data.category === g.category)).slice(0, 3);
+---
+<Base title={g.title} description={g.dek} image={g.image?.src}>
+  <article class="section wrap">
+    <header class="head">
+      <a class="chip" href="/guides/">{g.category}</a>
+      <h1>{g.title}</h1>
+      <p class="dek">{g.dek}</p>
+      <p class="muted small">Updated {fmt(g.updated, { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+    </header>
+    {g.image && <Photo image={g.image} ratio="21 / 9" showCredit eager />}
+    <div class="prose body"><Content /></div>
+  </article>
+  <section class="section wrap more">
+    <h2>Keep exploring</h2>
+    <div class="grid">{related.map((r) => <GuideCard guide={r} />)}</div>
+  </section>
+</Base>
+
+<style>
+  .head { max-width: 780px; margin-bottom: 28px; }
+  .head h1 { margin-top: 14px; }
+  .head .chip { text-decoration: none; }
+  .dek { font-size: 1.25rem; color: var(--cobalt-ink); margin: 0 0 8px; }
+  .small { font-size: 0.88rem; margin: 0; }
+  .body { margin: 36px auto 0; }
+  .more { border-top: 1px solid var(--line); }
+</style>

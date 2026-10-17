@@ -1,0 +1,47 @@
+---
+import { NAV } from '../data/site';
+const path = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a href="/" class="logo" aria-label="HereSaratoga home">
+      <svg viewBox="0 0 64 64" width="30" height="30" aria-hidden="true"><rect width="64" height="64" rx="14" fill="currentColor"/><path d="M32 12c-8.3 0-15 6.5-15 14.6C17 38 32 52 32 52s15-14 15-25.4C47 18.5 40.3 12 32 12z" fill="#fff"/><circle cx="32" cy="26.5" r="5.5" fill="currentColor"/></svg>
+      <span>Here<b>Saratoga</b></span>
+    </a>
+    <button class="toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav">
+      {NAV.map((n) => <a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>)}
+      <a href="/submit-event/" class="btn">Submit an event</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.site-header .toggle');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    document.getElementById('site-nav')?.classList.toggle('open', !open);
+  });
+</script>
+
+<style>
+  .site-header { position: sticky; top: 0; z-index: 20; background: rgba(251, 250, 247, 0.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .logo { display: flex; align-items: center; gap: 10px; color: var(--cobalt); text-decoration: none; font: 500 1.3rem/1 var(--serif); }
+  .logo b { font-weight: 700; }
+  .toggle { display: none; flex-direction: column; gap: 5px; padding: 10px; background: none; border: 0; cursor: pointer; }
+  .toggle span { width: 22px; height: 2px; background: var(--cobalt-ink); border-radius: 2px; }
+  nav { display: flex; align-items: center; gap: 22px; }
+  nav a:not(.btn) { color: var(--cobalt-ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  nav a[aria-current='page'], nav a:not(.btn):hover { color: var(--cobalt); }
+  nav .btn { padding: 10px 16px; font-size: 0.85rem; }
+
+  @media (max-width: 860px) {
+    .toggle { display: flex; }
+    nav { display: none; position: absolute; left: 0; right: 0; top: 66px; flex-direction: column; align-items: stretch; gap: 0; background: var(--paper); border-bottom: 1px solid var(--line); padding: 8px 16px 20px; }
+    nav.open { display: flex; }
+    nav a:not(.btn) { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    nav .btn { margin-top: 16px; text-align: center; }
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+
+// Collect every credited photo on the site for the credits list.
+const guides = await getCollection('guides');
+const places = await getCollection('places');
+const credits = [
+  ...guides.flatMap((g) => (g.data.image ? [{ where: g.data.title, ...g.data.image }] : [])),
+  ...places.flatMap((p) => (p.data.image ? [{ where: p.data.name, ...p.data.image }] : [])),
+];
+---
+<Base title="About" description="HereSaratoga is the complete independent guide to Saratoga Springs, NY.">
+  <section class="section wrap prose">
+    <p class="eyebrow">About</p>
+    <h1>The complete guide to Saratoga Springs</h1>
+    <p>HereSaratoga is an independent guide to Saratoga Springs, New York — what to do this weekend, where to eat, where to stay and how to make the most of track season, SPAC summers and the quiet, beautiful off-season too.</p>
+    <p>Event dates, hours and prices change. We do our best to keep everything current, but always confirm with the venue or organizer before you go. Spot something wrong? <a href={`mailto:${SITE.email}`}>Tell us</a>.</p>
+
+    <h2 id="advertise">Advertise &amp; featured listings</h2>
+    <p>Reach people planning their Saratoga visit and locals deciding what to do this weekend. We offer featured event placements, featured directory listings, newsletter sponsorships and track-season packages.</p>
+    <p><a class="btn" href={`mailto:${SITE.email}?subject=Advertising`}>Get the media kit</a></p>
+
+    <h2 id="photo-credits">Photo credits</h2>
+    {credits.length ? (
+      <ul>{credits.map((c) => <li>{c.where}: <a href={c.sourceUrl} rel="noopener">{c.credit}</a>, {c.license}</li>)}</ul>
+    ) : (
+      <p class="muted">Credits for every photo on the site are listed here.</p>
+    )}
+  </section>
+</Base>

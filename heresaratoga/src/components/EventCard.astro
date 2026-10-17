@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { fmt, dateRange } from '../lib/dates';
+interface Props { event: CollectionEntry<'events'>; }
+const { event } = Astro.props;
+const e = event.data;
+---
+<article class="ev" data-category={e.category}>
+  <div class="date" aria-hidden="true">
+    <span class="mon">{fmt(e.start, { month: 'short' })}</span>
+    <span class="day">{fmt(e.start, { day: 'numeric' })}</span>
+  </div>
+  <div class="info">
+    <div class="meta">
+      <span class="chip">{e.category}</span>
+      {!e.dateConfirmed && <span class="chip warn" title="Expected date based on past years">Date TBC</span>}
+    </div>
+    <h3>{e.url ? <a href={e.url} rel="noopener" target="_blank">{e.title}</a> : e.title}</h3>
+    <p class="when">{dateRange(e.start, e.end)}{e.time && ` · ${e.time}`} · {e.venue} · {e.price}</p>
+    <p class="muted">{e.summary}</p>
+  </div>
+</article>
+
+<style>
+  .ev { display: grid; grid-template-columns: 68px 1fr; gap: 18px; padding: 20px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
+  .date { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 72px; border-radius: 12px; background: var(--cobalt); color: #fff; }
+  .mon { font: 600 0.72rem/1 var(--sans); text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.85; }
+  .day { font: 700 1.8rem/1.1 var(--serif); }
+  .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  h3 { margin: 0 0 4px; }
+  h3 a { color: inherit; text-decoration: none; }
+  h3 a:hover { color: var(--cobalt); }
+  .when { margin: 0 0 6px; font-weight: 500; font-size: 0.92rem; color: var(--cobalt-ink); }
+  .muted { margin: 0; font-size: 0.95rem; }
+</style>

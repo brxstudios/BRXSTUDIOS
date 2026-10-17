@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import GuideCard from '../components/GuideCard.astro';
+import EventCard from '../components/EventCard.astro';
+import { todayInSaratoga } from '../lib/dates';
+
+const today = todayInSaratoga();
+const events = (await getCollection('events'))
+  .filter((e) => (e.data.end ?? e.data.start) >= today)
+  .sort((a, b) => +a.data.start - +b.data.start)
+  .slice(0, 4);
+const guides = (await getCollection('guides')).sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || +b.data.updated - +a.data.updated);
+const featured = guides.slice(0, 6);
+
+const tiles = [
+  { href: '/explore/things-to-do/', label: 'Things to Do', note: 'Track, SPAC, the lake, the springs' },
+  { href: '/explore/eat-drink/', label: 'Eat & Drink', note: 'Broadway, Caroline St & beyond' },
+  { href: '/explore/stay/', label: 'Stay', note: 'Hotels & inns near it all' },
+  { href: '/guides/track-season/', label: 'Track Season', note: 'The complete survival guide' },
+];
+---
+<Base>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Saratoga Springs, New York</p>
+      <h1>Everything worth doing in Saratoga.</h1>
+      <p class="lede">Health, history and horses — plus the restaurants, shows and weekends that make this the best small city in America. Updated every week.</p>
+      <div class="cta">
+        <a class="btn light" href="/events/">What’s happening</a>
+        <a class="btn ghost-light" href="/guides/">Browse the guides</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="tiles wrap">
+    {tiles.map((t) => (
+      <a class="tile" href={t.href}><strong>{t.label}</strong><span>{t.note}</span></a>
+    ))}
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Coming up</p><h2>On the calendar</h2></div>
+      <a href="/events/">All events →</a>
+    </div>
+    <div class="events">{events.map((e) => <EventCard event={e} />)}</div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">The guides</p><h2>Start here</h2></div>
+      <a href="/guides/">All guides →</a>
+    </div>
+    <div class="grid">{featured.map((g) => <GuideCard guide={g} />)}</div>
+  </section>
+</Base>
+
+<style>
+  .hero { background: radial-gradient(1200px 500px at 85% -10%, #2a6fd6 0%, transparent 60%), linear-gradient(160deg, var(--cobalt) 0%, var(--cobalt-deep) 100%); color: #dfe9fb; padding: 88px 0 120px; }
+  .hero h1 { color: #fff; max-width: 14ch; }
+  .hero .eyebrow { color: #a9c4f5; }
+  .lede { font-size: 1.2rem; max-width: 46ch; margin: 0 0 28px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .ghost-light { background: transparent; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7); }
+  .ghost-light:hover { background: rgba(255,255,255,0.12); }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: -56px; position: relative; }
+  @media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+  .tile { display: flex; flex-direction: column; gap: 4px; padding: 20px; background: #fff; border-radius: var(--radius); box-shadow: 0 10px 30px rgba(11,31,68,0.12); text-decoration: none; color: var(--muted); font-size: 0.9rem; }
+  .tile strong { font: 700 1.2rem/1.2 var(--serif); color: var(--cobalt-ink); }
+  .tile:hover strong { color: var(--cobalt); }
+  .events { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr)); }
+</style>

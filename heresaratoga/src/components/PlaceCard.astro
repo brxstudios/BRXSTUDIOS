@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Photo from './Photo.astro';
+import { CATEGORY_LABEL } from '../data/site';
+interface Props { place: CollectionEntry<'places'>; }
+const { place } = Astro.props;
+const p = place.data;
+const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${p.name}, Saratoga Springs, NY`)}`;
+---
+<article class="place">
+  <Photo image={p.image} label={CATEGORY_LABEL[p.category]} ratio="16 / 10" />
+  <div class="body">
+    <p class="area">{p.area}{p.seasonal && ` · ${p.seasonal}`}</p>
+    <h3>{p.name}</h3>
+    <p>{p.blurb}</p>
+    {p.tags.length > 0 && <p class="tags">{p.tags.map((t) => <span class="chip">{t}</span>)}</p>}
+    <p class="links">
+      <a href={maps} rel="noopener" target="_blank">Map</a>
+      {p.url && <a href={p.url} rel="noopener" target="_blank">Website</a>}
+    </p>
+  </div>
+</article>
+
+<style>
+  .place { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; }
+  .body { padding: 12px 8px 6px; }
+  .area { margin: 0 0 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cobalt); }
+  .body p { margin: 0 0 10px; font-size: 0.97rem; }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .links { display: flex; gap: 16px; font-weight: 600; font-size: 0.9rem; }
+</style>

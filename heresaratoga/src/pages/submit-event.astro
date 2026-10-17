@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+const action = SITE.eventFormEndpoint;
+const categories = ['Festival', 'Music', 'Track', 'Food & Drink', 'Arts', 'Family', 'Holiday', 'Outdoors'];
+---
+<Base title="Submit an Event" description="Add your Saratoga Springs event to the HereSaratoga calendar for free.">
+  <section class="section wrap narrow">
+    <p class="eyebrow">Free listing</p>
+    <h1>Submit an event</h1>
+    <p class="muted">Tell us what’s happening. We review every submission and usually add it within a few days. Want it at the top of the calendar and in the newsletter? Ask about a <a href="/about/#advertise">featured listing</a>.</p>
+
+    <form method="post" action={action || `mailto:${SITE.email}?subject=Event%20submission`} enctype={action ? undefined : 'text/plain'}>
+      <label for="title">Event name</label>
+      <input id="title" name="title" required />
+      <div class="row">
+        <div><label for="start">Date</label><input id="start" name="start" type="date" required /></div>
+        <div><label for="end">End date (optional)</label><input id="end" name="end" type="date" /></div>
+      </div>
+      <div class="row">
+        <div><label for="time">Time</label><input id="time" name="time" placeholder="7–10pm" /></div>
+        <div><label for="price">Price</label><input id="price" name="price" placeholder="Free, $20, etc." /></div>
+      </div>
+      <label for="venue">Venue / address</label>
+      <input id="venue" name="venue" required />
+      <label for="category">Category</label>
+      <select id="category" name="category">{categories.map((c) => <option>{c}</option>)}</select>
+      <label for="url">Link for tickets or info</label>
+      <input id="url" name="url" type="url" placeholder="https://" />
+      <label for="summary">Short description</label>
+      <textarea id="summary" name="summary" rows="4" maxlength="400" required></textarea>
+      <label for="email">Your email (not published)</label>
+      <input id="email" name="email" type="email" required />
+      <p class="muted small">Photos: please email one you own the rights to, or that we have permission to use.</p>
+      <button class="btn" type="submit">Send event</button>
+    </form>
+  </section>
+</Base>
+
+<style>
+  .narrow { max-width: 720px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+  form { margin-top: 12px; }
+  form .btn { margin-top: 20px; }
+  .small { font-size: 0.88rem; }
+</style>
