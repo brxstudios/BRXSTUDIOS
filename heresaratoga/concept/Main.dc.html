@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HereSaratoga homepage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&amp;family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#0047AB}a:hover{color:#00307A}
+.hs-nav{display:flex}
+.hs-burger{display:none}
+@media (max-width: 860px){
+.hs-nav{display:none}
+.hs-burger{display:flex}
+.hs-hero{grid-template-columns:1fr !important}
+.hs-guides{grid-template-columns:1fr !important}
+.hs-band{grid-template-columns:1fr !important}
+.hs-foot{grid-template-columns:1fr 1fr !important}
+}
+</style>
+</helmet>
+<div style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; color: #0A1A3A; background: #FFFFFF; min-height: 100%;">
+
+  <!-- Top strip -->
+  <div style="background: #0A1A3A; color: #C9D6EE; font-size: 13px;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 8px 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+      <span>Saratoga Springs, NY · Health, History &amp; Horses</span>
+      <span>[Weather] · <a href="#newsletter" style="color: #FFD34D; text-decoration: none;">Get “This Weekend” every Thursday →</a></span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header style="border-bottom: 1px solid #D8DFEC; background: #FFFFFF;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+      <a href="#" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: {{c}};" aria-label="HereSaratoga home">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="17" fill="{{c}}"></circle><path d="M17 7.5c-4.1 0-7.3 3.1-7.3 7.1 0 5.4 7.3 12 7.3 12s7.3-6.6 7.3-12c0-4-3.2-7.1-7.3-7.1z" fill="#FFFFFF"></path><circle cx="17" cy="14.6" r="2.6" fill="{{c}}"></circle></svg>
+        <span style="font-size: 25px; letter-spacing: -0.03em;"><span style="font-weight: 500;">here</span><span style="font-weight: 800;">saratoga</span></span>
+      </a>
+      <nav class="hs-nav" style="align-items: center; gap: 26px; font-size: 15px; font-weight: 500;" aria-label="Main">
+        <a href="#" style="color: #0A1A3A; text-decoration: none;">Events</a>
+        <a href="#" style="color: #0A1A3A; text-decoration: none;">Eat</a>
+        <a href="#" style="color: #0A1A3A; text-decoration: none;">Drink</a>
+        <a href="#" style="color: #0A1A3A; text-decoration: none;">Things to Do</a>
+        <a href="#" style="color: #0A1A3A; text-decoration: none;">Stay</a>
+        <a href="#" style="color: #0A1A3A; text-decoration: none;">Track Season</a>
+        <a href="#" style="color: #0A1A3A; text-decoration: none;">Guides</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button aria-label="Search" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #D8DFEC; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1A3A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        </button>
+        <a href="#newsletter" style="height: 44px; padding: 0 20px; border-radius: 22px; background: {{c}}; color: #FFFFFF; font-weight: 700; font-size: 14px; display: flex; align-items: center; text-decoration: none;">Subscribe</a>
+        <button class="hs-burger" aria-label="Menu" style="width: 44px; height: 44px; border: 0; background: none; align-items: center; justify-content: center; cursor: pointer;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A1A3A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section style="max-width: 1280px; margin: 0 auto; padding: 40px 24px 24px;">
+    <div class="hs-hero" style="display: grid; grid-template-columns: 1.55fr 1fr; gap: 28px;">
+      <a href="#" style="position: relative; display: block; min-height: 560px; border-radius: 20px; overflow: hidden; background: #C8D6EE; text-decoration: none;">
+        <div style="position: absolute; top: 20px; left: 20px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #3A4F7A;">[Photo: Broadway at dusk, Victorian Streetwalk lights]</div>
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 32px; background: #0A1A3A; color: #FFFFFF;">
+          <span style="display: inline-block; background: #FFD34D; color: #0A1A3A; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 10px; border-radius: 6px;">This weekend</span>
+          <h1 style="font-size: 54px; line-height: 1; letter-spacing: -0.035em; font-weight: 800; margin: 14px 0 10px;">The best things to do in Saratoga this weekend</h1>
+          <p style="font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 21px; margin: 0; color: #C9D6EE;">Holiday lights on Broadway, a sold-out night at Caffè Lena and where to get brunch without a wait.</p>
+        </div>
+      </a>
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <sc-for list="{{side}}" as="s" hint-placeholder-count="3">
+          <a href="#" style="display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: center; text-decoration: none; color: #0A1A3A; padding-bottom: 18px; border-bottom: 1px solid #D8DFEC;">
+            <div style="height: 112px; border-radius: 14px; background: #DCE5F5; display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box; font-size: 10px; color: #3A4F7A; text-transform: uppercase; letter-spacing: 0.08em;">{{s.photo}}</div>
+            <div>
+              <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: {{c}};">{{s.cat}}</div>
+              <div style="font-size: 21px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; margin-top: 6px;">{{s.title}}</div>
+            </div>
+          </a>
+        </sc-for>
+        <a href="#" style="margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding: 20px 22px; border-radius: 16px; background: #F1F4FA; color: #0A1A3A; text-decoration: none; font-weight: 700;">
+          <span>Plan a trip: 48 hours in Saratoga</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1A3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category rail -->
+  <section style="max-width: 1280px; margin: 0 auto; padding: 16px 24px 8px;">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <sc-for list="{{cats}}" as="k" hint-placeholder-count="8">
+        <a href="#" style="height: 44px; padding: 0 18px; border-radius: 22px; border: 1.5px solid #0A1A3A; color: #0A1A3A; display: flex; align-items: center; font-weight: 500; font-size: 15px; text-decoration: none;">{{k}}</a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section style="max-width: 1280px; margin: 0 auto; padding: 56px 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{c}};">Events calendar</div>
+        <h2 style="font-size: 44px; letter-spacing: -0.03em; font-weight: 800; margin: 6px 0 0; line-height: 1;">Coming up in Saratoga</h2>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 0; background: {{c}}; color: #FFFFFF; font: 600 14px 'Bricolage Grotesque', sans-serif;">This weekend</button>
+        <button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 1px solid #D8DFEC; background: #FFFFFF; color: #0A1A3A; font: 500 14px 'Bricolage Grotesque', sans-serif;">Next 30 days</button>
+        <button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 1px solid #D8DFEC; background: #FFFFFF; color: #0A1A3A; font: 500 14px 'Bricolage Grotesque', sans-serif;">Free</button>
+        <button style="height: 44px; padding: 0 16px; border-radius: 22px; border: 1px solid #D8DFEC; background: #FFFFFF; color: #0A1A3A; font: 500 14px 'Bricolage Grotesque', sans-serif;">Family</button>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+      <sc-for list="{{events}}" as="e" hint-placeholder-count="4">
+        <a href="#" style="display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; border: 1px solid #D8DFEC; text-decoration: none; color: #0A1A3A; background: #FFFFFF;">
+          <div style="position: relative; height: 170px; background: #DCE5F5;">
+            <div style="position: absolute; left: 14px; bottom: 12px; font-size: 10px; color: #3A4F7A; text-transform: uppercase; letter-spacing: 0.08em;">{{e.photo}}</div>
+            <div style="position: absolute; top: 14px; left: 14px; width: 58px; padding: 8px 0; border-radius: 12px; background: {{c}}; color: #FFFFFF; text-align: center;">
+              <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em;">{{e.mon}}</div>
+              <div style="font-size: 26px; font-weight: 800; line-height: 1;">{{e.day}}</div>
+            </div>
+          </div>
+          <div style="padding: 18px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: {{c}};">{{e.cat}}</div>
+            <div style="font-size: 21px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;">{{e.title}}</div>
+            <div style="font-size: 14px; color: #4A5672;">{{e.where}}</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+    <div style="margin-top: 22px; display: flex; gap: 18px; flex-wrap: wrap; align-items: center;">
+      <a href="#" style="font-weight: 700; color: {{c}};">See the full calendar</a>
+      <a href="#" style="font-weight: 500; color: #4A5672;">Hosting something? Submit your event free</a>
+    </div>
+  </section>
+
+  <!-- Track season band -->
+  <section style="background: {{c}}; color: #FFFFFF;">
+    <div class="hs-band" style="max-width: 1280px; margin: 0 auto; padding: 64px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFD34D;">The Track Season Hub</div>
+        <h2 style="font-size: 60px; line-height: 0.98; letter-spacing: -0.04em; font-weight: 800; margin: 12px 0 16px;">Six weeks.<br>One summer.<br>Everything you need.</h2>
+        <p style="font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 21px; color: #DCE6FA; margin: 0 0 24px; max-width: 34ch;">Where to sit, what to wear, where to eat after the last race and how to survive Travers weekend.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="#" style="height: 48px; padding: 0 22px; border-radius: 24px; background: #FFFFFF; color: {{c}}; font-weight: 700; display: flex; align-items: center; text-decoration: none;">Open the guide</a>
+          <a href="#" style="height: 48px; padding: 0 22px; border-radius: 24px; border: 2px solid #FFFFFF; color: #FFFFFF; font-weight: 700; display: flex; align-items: center; text-decoration: none;">Stakes calendar</a>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
+        <div style="height: 210px; border-radius: 16px; background: #2A63BF; padding: 14px; box-sizing: border-box; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #DCE6FA;">[Photo: Backyard picnic tables]</div>
+        <div style="height: 210px; border-radius: 16px; background: #2A63BF; padding: 14px; box-sizing: border-box; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #DCE6FA;">[Photo: Morning workouts]</div>
+        <div style="height: 210px; border-radius: 16px; background: #2A63BF; padding: 14px; box-sizing: border-box; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #DCE6FA;">[Photo: Hats on Travers Day]</div>
+        <div style="height: 210px; border-radius: 16px; background: #FFD34D; padding: 18px; box-sizing: border-box; color: #0A1A3A; display: flex; flex-direction: column; justify-content: space-between;">
+          <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">Opening Day 2027</div>
+          <div style="font-size: 40px; font-weight: 800; letter-spacing: -0.03em; line-height: 1;">[Countdown]</div>
+          <div style="font-size: 14px;">Dates announced early 2027</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guides -->
+  <section style="max-width: 1280px; margin: 0 auto; padding: 64px 24px;">
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{c}};">The guides</div>
+    <h2 style="font-size: 44px; letter-spacing: -0.03em; font-weight: 800; margin: 6px 0 28px; line-height: 1;">Know Saratoga like a local</h2>
+    <div class="hs-guides" style="display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 24px;">
+      <a href="#" style="grid-row: span 2; display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: #0A1A3A;">
+        <div style="flex: 1; min-height: 420px; border-radius: 18px; background: #C8D6EE; padding: 16px; box-sizing: border-box; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #3A4F7A;">[Photo: Island Spouter, Spa State Park]</div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: {{c}};">Outdoors</div>
+        <div style="font-size: 32px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;">Saratoga Spa State Park: the complete guide</div>
+        <div style="font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 19px; color: #4A5672;">Geysers, mineral baths, golf, trails and a grand hotel, five minutes from Broadway.</div>
+      </a>
+      <sc-for list="{{guides}}" as="g" hint-placeholder-count="4">
+        <a href="#" style="display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: #0A1A3A;">
+          <div style="height: 180px; border-radius: 16px; background: #DCE5F5; padding: 12px; box-sizing: border-box; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #3A4F7A;">{{g.photo}}</div>
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: {{c}};">{{g.cat}}</div>
+          <div style="font-size: 21px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;">{{g.title}}</div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Neighborhoods -->
+  <section style="background: #F1F4FA;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 64px 24px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{c}};">Explore by area</div>
+      <h2 style="font-size: 44px; letter-spacing: -0.03em; font-weight: 800; margin: 6px 0 28px; line-height: 1;">Saratoga, block by block</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px;">
+        <sc-for list="{{areas}}" as="a" hint-placeholder-count="6">
+          <a href="#" style="display: flex; flex-direction: column; justify-content: space-between; gap: 30px; min-height: 170px; padding: 20px; border-radius: 16px; background: #FFFFFF; border: 1px solid #D8DFEC; text-decoration: none; color: #0A1A3A;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{c}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+            <div>
+              <div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em;">{{a.name}}</div>
+              <div style="font-size: 14px; color: #4A5672; margin-top: 4px;">{{a.note}}</div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter" style="max-width: 1280px; margin: 0 auto; padding: 72px 24px;">
+    <div style="border-radius: 24px; background: #0A1A3A; color: #FFFFFF; padding: 48px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between;">
+      <div style="flex: 1 1 380px;">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFD34D;">Every Thursday</div>
+        <h2 style="font-size: 46px; letter-spacing: -0.035em; font-weight: 800; margin: 8px 0 10px; line-height: 1;">This Weekend in Saratoga</h2>
+        <p style="font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 20px; color: #C9D6EE; margin: 0;">The best of the weekend, new openings and one thing you didn’t know about your own town.</p>
+      </div>
+      <form style="flex: 1 1 360px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <label for="hs-email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Email address</label>
+        <input id="hs-email" type="email" placeholder="you@email.com" style="flex: 1 1 220px; height: 54px; padding: 0 20px; border-radius: 27px; border: 0; font: 400 16px 'Bricolage Grotesque', sans-serif;">
+        <button type="button" style="height: 54px; padding: 0 26px; border-radius: 27px; border: 0; background: #FFD34D; color: #0A1A3A; font: 700 16px 'Bricolage Grotesque', sans-serif; cursor: pointer;">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="border-top: 1px solid #D8DFEC;">
+    <div class="hs-foot" style="max-width: 1280px; margin: 0 auto; padding: 48px 24px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; font-size: 15px;">
+      <div>
+        <div style="font-size: 25px; letter-spacing: -0.03em; color: {{c}};"><span style="font-weight: 500;">here</span><span style="font-weight: 800;">saratoga</span></div>
+        <p style="color: #4A5672; margin: 10px 0 0; max-width: 34ch;">The complete guide to Saratoga Springs, New York. Independent and local.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><strong>Explore</strong><a href="#" style="color: #4A5672; text-decoration: none;">Events</a><a href="#" style="color: #4A5672; text-decoration: none;">Eat &amp; Drink</a><a href="#" style="color: #4A5672; text-decoration: none;">Things to Do</a><a href="#" style="color: #4A5672; text-decoration: none;">Stay</a></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><strong>Seasons</strong><a href="#" style="color: #4A5672; text-decoration: none;">Track Season</a><a href="#" style="color: #4A5672; text-decoration: none;">SPAC Summer</a><a href="#" style="color: #4A5672; text-decoration: none;">Fall</a><a href="#" style="color: #4A5672; text-decoration: none;">Winter</a></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><strong>HereSaratoga</strong><a href="#" style="color: #4A5672; text-decoration: none;">About</a><a href="#" style="color: #4A5672; text-decoration: none;">Advertise</a><a href="#" style="color: #4A5672; text-decoration: none;">Submit an event</a><a href="#" style="color: #4A5672; text-decoration: none;">Instagram</a></div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"cobalt":{"editor":"color","default":"#0047AB","options":["#0047AB","#0A3D91","#1F5FD1","#00307A"]},"$preview":{"width":1440,"height":3560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      c: this.props.cobalt ?? '#0047AB',
+      side: [
+        { cat: 'Eat & Drink', title: 'The 25 best restaurants in Saratoga right now', photo: '[Photo: Dining on Broadway]' },
+        { cat: 'Winter', title: 'Saratoga in winter: the locals’ season', photo: '[Photo: Congress Park in snow]' },
+        { cat: 'Only in Saratoga', title: 'How to drink the springs (and which ones to skip)', photo: '[Photo: Congress Spring]' }
+      ],
+      cats: ['Eat', 'Drink', 'Brunch', 'Live Music', 'Family', 'Outdoors', 'Free', 'Date Night', 'Rainy Day', 'Day Trips'],
+      events: [
+        { mon: 'DEC', day: '3', cat: 'Holiday', title: 'Victorian Streetwalk', where: 'Broadway · Free · Date TBC', photo: '[Photo: Streetwalk carolers]' },
+        { mon: 'DEC', day: '31', cat: 'Holiday', title: 'Saratoga New Year’s Fest', where: 'Downtown venues · Date TBC', photo: '[Photo: Fireworks]' },
+        { mon: 'FEB', day: '6', cat: 'Food & Drink', title: 'Saratoga Chowderfest', where: 'Downtown · Pay per cup · Date TBC', photo: '[Photo: Chowder line on Broadway]' },
+        { mon: '[MO]', day: '[#]', cat: 'Live Music', title: '[Caffè Lena show]', where: 'Phila Street · [Price]', photo: '[Photo: Caffè Lena stage]' }
+      ],
+      guides: [
+        { cat: 'Track Season', title: 'The track season survival guide', photo: '[Photo: Saratoga Race Course]' },
+        { cat: 'Arts & Music', title: 'How to do a summer night at SPAC', photo: '[Photo: SPAC lawn]' },
+        { cat: 'Itineraries', title: '48 hours in Saratoga Springs', photo: '[Photo: Canfield Casino]' },
+        { cat: 'Stay', title: 'Where to stay in Saratoga, by budget', photo: '[Photo: The Adelphi]' }
+      ],
+      areas: [
+        { name: 'Broadway', note: 'Shops, restaurants, the main drag' },
+        { name: 'Caroline Street', note: 'Bars and late nights' },
+        { name: 'Union Avenue', note: 'The track, museums, Yaddo' },
+        { name: 'Beekman Street', note: 'Galleries and the arts district' },
+        { name: 'Spa State Park', note: 'Springs, baths, SPAC' },
+        { name: 'Saratoga Lake', note: 'Boating, rowing, lakeside dining' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
